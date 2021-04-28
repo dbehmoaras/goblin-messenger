@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../logo.png';
 
-//have login and password input field 
+//have login and password input field
 //with "login" button and signup link
 
 const Login = props => {
@@ -13,7 +13,7 @@ const Login = props => {
             <img src={logo} alt="Multicommunicado"/>
             <div className="loginSignup">
                 <div className="loginSignupForm">
-                    <h1>Login</h1>
+                    <h1>Login:</h1>
                     <input className="loginInput" id="userLogin" type="text" placeholder="username"/><br/>
                     <input className="loginInput" id="passLogin" type="password" placeholder="password"/><br/>
                     {info}
@@ -26,4 +26,4 @@ const Login = props => {
     );
 }
 
-export default Login; 
+export default Login;
