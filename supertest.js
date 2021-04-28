@@ -42,7 +42,7 @@
 //     describe('/messages', () => {
 //         describe('GET', () => {
 //           beforeAll((done) => {
-//             //test if cookie.ssid type of string and httpOnly type of boolean or is true  
+//             //test if cookie.ssid type of string and httpOnly type of boolean or is true
 //             cookies = {
 //               ssid: 'j%3A%226088a1310deb7aa2a08c5462%22',
 //               httpOnly: true
