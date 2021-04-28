@@ -26,10 +26,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 //** adds middleware to parse cookies from the HTTP request **//
 app.use(cookieParser());
 
+
+//this was a dead route -- iteration
+
 //** Sign Up **//
-app.get ('/signup', (req, res) => {
-    res.render('./..client/signup', {error : null});
-});
+// app.get ('/signup', (req, res) => {
+//     console.log('sign up is fired');
+//     res.status(200).render('./..client/signup', {error : null});
+// });
 
 //
 app.get ('/messages', 
