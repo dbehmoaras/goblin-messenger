@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 console.log("cool, now we're in the models.js file")
 
-const MONGO_URI = "mongodb+srv://goblin:shark@cluster0.kpvr3.mongodb.net/MultiCommunicado?retryWrites=true&w=majority"
+const MONGO_URI = "mongodb+srv://nikhilmassand:nmdb@communica2os.m4gae.mongodb.net/communica2os?retryWrites=true&w=majority"
 
 console.log("we made it past the db declaration")
 
