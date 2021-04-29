@@ -50,13 +50,14 @@ app.get(
 );
 
 //logout route to end session and clear cookie
-app.get(
+app.post(
   '/signout',
   //this should end the session, but we don't have any calls coming here as of now
   sessionController.endSession,
   //anon function should clear the cookie associated with the page
   (req, res) => {
-    res.clearCookie('ssid');
+    console.log("signout endpoint hit")
+    res.clearCookie('ssid').status(200).json(res.locals);
   }
 );
 
@@ -97,10 +98,10 @@ app.post(
 
   (req, res) => {
     //not going to redirect, send a response of user info
-    console.log(
-      'post /login reaching end of middleware, sending 200 and json(res.locals)',
-      res.locals
-    );
+    // console.log(
+    //   'post /login reaching end of middleware, sending 200 and json(res.locals)',
+    //   res.locals
+    // );
     res.status(200).json(res.locals);
   }
 );

@@ -24,7 +24,30 @@ const mainReducer = (state = initialState, action) => {
         case types.LOGIN_STATE:
             // user is logged in
             user = state.user;
-            if (action.payload === null) user = null;
+            if (action.payload === null){
+                if (user !== null){
+                    console.log('before fetch')
+                    fetch('/signout',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'Application/JSON',
+                        },
+                        body: JSON.stringify(user),
+                    })
+                        .then((resp) => {
+                            console.log('reducer.then')
+                            resp.json()
+                        })
+                        .then((data) => {
+                            console.log('reducer fetch data:',data)
+                        })
+                        .catch((err) =>{
+                            console.log('reducer fetch failed');
+                            console.log(err);
+                        })
+                }
+                user = null;
+            } 
             login_state = action.payload;
             return {
                 ...state,
