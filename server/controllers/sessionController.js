@@ -10,10 +10,10 @@ sessionController.isLoggedIn = (req, res, next) => {
   Session.findOne({ cookieID: req.cookies.ssid }, (err, session) => {
     if (err)
       return next(
-        `Error in sessionController.isLoggedIn: ${JSON.strigify(err)}`
+        `Error in sessionController.isLoggedIn: ${JSON.stringify(err)}`
       );
     //no session found, send back nothing for now...
-    if (!session) res.redirect('/signup');
+    if (!session) res.redirect('/s/* ignup */');
     // session found, send back userid that is in cookie
     return next();
   });
@@ -25,14 +25,20 @@ sessionController.isLoggedIn = (req, res, next) => {
  */
 sessionController.startSession = (req, res, next) => {
   console.log('now in Session Creator');
-  /* if (!res.locals.user) */ return next();
+  if (!res.locals.user) return next();
+  console.log('res locals from verify user to session controller ', res.locals);
+  const session = false;
   if (!session) {
     try {
+      // console.log(
+      //   'checking res locals user id in start session controller',
+      //   res.locals.user._id
+      // );
       Session.update(
         { cookieID: res.locals.user._id },
-        { upsert: true },
+        // { upsert: true },
         (err, session) => {
-          console.log(`this is the session reponse from the db: ${session}`);
+          console.log(`this is the session response from the db: ${session}`);
           if (err) {
             console.log(err);
             return next(`Error in sessionController.startSession: ${err}`);

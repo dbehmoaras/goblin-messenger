@@ -66,11 +66,11 @@ class MainContainer extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        //check if user verified succesfully, then login
-        console.log(data);
+        console.log('data:', data);
         if (data.noMatch) {
           this.props.nowLoggedIn('wrongPassword');
         } else if (data.userUnknown) {
+          console.log('is user unknown?:', data.userUnknown);
           this.props.nowLoggedIn('unknownUser');
         } else {
           this.props.nowSigningUp(null);
