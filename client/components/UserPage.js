@@ -34,7 +34,7 @@ const UserPage = props => {
             break;
     }
     return (
-        <div>
+        <div data-testid='message-container-user-test'>
         <div className="userPageLogo">
             <img id="userPageLogo" src={logo} alt="Multicommunicado"/>
         </div>

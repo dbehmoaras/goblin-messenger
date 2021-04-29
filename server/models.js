@@ -46,16 +46,28 @@ const userSchema = new Schema({
     language: {type: String}
     // username: {type: String, required: true, unique: true},
     // password: {type: String, required: true}
-  });
-  
-  const User = mongoose.model('User', userSchema);
+});
 
-  const sessionSchema = new Schema({
+
+userSchema.pre('save', function (next) {
+    const user = this;
+    bcrypt.hash(user.password, 10, (err,hash) => {
+        if (err) return next (err);
+        user.password = hash;
+        return next();
+    })
+})
+
+const User = mongoose.model('User', userSchema);
+
+const sessionSchema = new Schema({
     cookieID: { type: String, required: true /* , unique: true */ },
     createdAt: { type: Date, expires: 30, default: Date.now }
-  });
-  
-  const Session = mongoose.model('Session', sessionSchema);
+});
+
+
+
+const Session = mongoose.model('Session', sessionSchema);
 
 module.exports = {
     SentMess,

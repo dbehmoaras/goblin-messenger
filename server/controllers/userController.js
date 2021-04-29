@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const bcrypt = require('bcrypt');
 
 
 const userController = {};
@@ -10,7 +11,7 @@ userController.getAllUsers = (req, res, next) => {
             res.locals.users = users;
             return next();
         });
-        
+
     } catch (err) {
         return next(`Error in userController.getAllUsers: ${JSON.stringify(err)}`);
     }
@@ -44,9 +45,9 @@ userController.createUser = async (req, res, next) => {
                     log: `userController.createUser: ERROR: User might already exsist`,
                     message: { err: 'userController.createUser: ERROR: User might already exsist.' }
                 });
-            }    
+            }
         })
-    }    
+    }
 };
 
 userController.verifyUser = (req, res, next) => {
@@ -57,13 +58,15 @@ userController.verifyUser = (req, res, next) => {
     // const username = req.body.username;
     // const password = req.body.password;
 
-    try { 
+    try {
         User.findOne({ username }, (err, response ) => {
             console.log(password)
             console.log(`This is the verify user response from the db: ${response}`)
             if (response === null) {
                 res.locals.userUnknown = true;
-            } else if (password === response.password) {
+            // } else if (password === response.password) {
+            } else if (bcrypt.compare(password, response.password)) {
+                //this is where the user is found
                 console.log(`User logged in as username: ${username}`)
                 res.locals.user = response;
             } else res.locals.noMatch = true;
