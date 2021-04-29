@@ -57,7 +57,7 @@ class MessageContainer extends Component {
         message.senderUsername = this.props.user.username;
         message.language = this.props.user.language;
         message.message = newmessage.value;
-        
+
         /* {
         id: the Id of the user sending the message
         senderUsername: the message sender's username,
@@ -79,6 +79,9 @@ class MessageContainer extends Component {
             else if (data.userNotFound) {this.props.userInfo('userUnknown')}
             else {
                 console.log('new messages', data)
+                console.log('this should be the sender:', data.sentMess.senderUsername, data.sentMess.senderId)
+                console.log('this is the receiever:', data.target.username, data.target._id)
+                console.log('this is the user in the data:', data.user.username, data.user._id)
                 recipient.value = '';
                 newmessage.value = '';
                 this.props.updateMessages(data.messages)
