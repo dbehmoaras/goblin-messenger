@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from '../logo.png';
 
-//have signup and password input field 
+//have signup and password input field
 //with "signup" button and signup link
-//the two letter codes for the values of the selector are what are 
+//the two letter codes for the values of the selector are what are
 //referred to as ISO language codes, specifically the 639-1 which specify how the API
 //knows what language the message sent is in, and what the recipient's language to translate to is
 const Signup = props => (
-    <div className="loginsignuppage">
+    <div data-testid='signup-test' className="loginsignuppage">
         <img src={logo} alt="Multicommunicado"/>
         <div className="loginSignup">
             <div className="loginSignupForm">
@@ -41,5 +41,5 @@ const Signup = props => (
     </div>
 );
 
-    
-export default Signup; 
+
+export default Signup;

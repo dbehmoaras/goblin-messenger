@@ -94,10 +94,14 @@ translationController.sendForTranslation = async (req, res, next) => {
 }
 
 //the middleware that will handle the creation of the translated message entry in the databse
-//the translated message will have the ID's of the sender and recipient included to allow for specific lookup of 
+//the translated message will have the ID's of the sender and recipient included to allow for specific lookup of
 //only the desired messages
 translationController.createTranslatedMessage = async (req, res, next) => {
     console.log('create transMess fired');
+    console.log('this is res target', res.locals.target)
+    console.log('this is req body', req.body)
+    console.log('is this anything? res user', res.locals.user)
+
     TransMess.create({
         senderId: req.body.id,
         senderLang: req.body.language,
@@ -107,18 +111,19 @@ translationController.createTranslatedMessage = async (req, res, next) => {
         receiverLang: res.locals.target.language,
         input: res.locals.translation
     })
-    res.locals.user = res.locals.target;
+    res.locals.user = req.body;
     next();
 }
 
 // this will get the messages that have been sent to the user and translated
-// as well as the messages that the user has sent pre translation.  
+// as well as the messages that the user has sent pre translation.
 
 translationController.getMessages = async (req, res, next) => {
     if(res.locals.user){
         res.locals.messages = {};
-        res.locals.messages.received = await TransMess.find({receiverId: res.locals.user._id});
-        res.locals.messages.sent = await SentMess.find({senderId: res.locals.user._id});
+        console.log('this is my user id. trying to find the bug:',res.locals.user.id);
+        res.locals.messages.received = await TransMess.find({receiverId: res.locals.user.id});
+        res.locals.messages.sent = await SentMess.find({senderId: res.locals.user.id});
         return next();
     } else{
         next();

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../logo.png';
 
-//have login and password input field 
+//have login and password input field
 //with "login" button and signup link
 
 const Login = props => {
@@ -9,11 +9,11 @@ const Login = props => {
     if (props.info == 'wrongPassword') info.push(<div className="info">Wrong password!</div>)
     if (props.info == 'unknownUser') info.push(<div className="info">Unknown user!</div>)
     return (
-        <div className='loginsignuppage'>
+        <div data-testid='login-test' className='loginsignuppage'>
             <img src={logo} alt="Multicommunicado"/>
             <div className="loginSignup">
                 <div className="loginSignupForm">
-                    <h1>Login</h1>
+                    <h1>Login:</h1>
                     <input className="loginInput" id="userLogin" type="text" placeholder="username"/><br/>
                     <input className="loginInput" id="passLogin" type="password" placeholder="password"/><br/>
                     {info}
@@ -26,4 +26,4 @@ const Login = props => {
     );
 }
 
-export default Login; 
+export default Login;

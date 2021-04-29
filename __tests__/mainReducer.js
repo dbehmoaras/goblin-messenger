@@ -22,16 +22,16 @@ describe('Main Reducer tests', () => {
       expect(subject(undefined, {type: undefined})).toEqual(state);
     });
 	});
-  
+
 	describe('unrecognized action types', () => {
     it('should return the original state without duplication', () => {
       const action = {type: 'awrilukjasndasloi'};
       expect(subject(state,action)).toBe(state);
     });
 	});
-  
+
 	describe('LOGIN_STATE', () => {
-		
+
 	})
 	describe('LOGIN', () => {
 		const action = {
@@ -45,10 +45,10 @@ describe('Main Reducer tests', () => {
 				messages: {message: 'message1'}
 			},
 		};
-		
+
 		it('updates the user state', () => {
 			const { messages, login_state, user } = subject(state, action);
-			expect(user).toEqual(action.payload.user); 
+			expect(user).toEqual(action.payload.user);
 
 		});
 		it('updates the messages state', () => {
@@ -65,7 +65,7 @@ describe('Main Reducer tests', () => {
 		})
 
 	})
-	
+
 	describe('SIGNUP_STATE', () => {
 		const action = {
             type: 'SIGNUP_STATE',
@@ -120,7 +120,7 @@ describe('Main Reducer tests', () => {
 
     it ('updates the messages on the UI -> id', () => {
       const { messages } = subject(state, action);
-			console.log(subject(state, action))
+			// console.log(subject(state, action))
       expect(messages.id).toEqual('67');
     })
     it ('updates the messages on the UI -> targetUsername', () => {
