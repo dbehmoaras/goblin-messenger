@@ -107,22 +107,22 @@ describe('MainContainer tests', () => {
   });
 });
 
-describe('MessageContainer tests', () => {
-  beforeAll(() => {
-    store.dispatch({
-      type: 'UPDATE_MESSAGES',
-      payload: {
-        id: '67',
-        targetUsername: 'blabby',
-        senderUsername: 'coraline',
-        language: 'french',
-        message: 'I don\'t speak french',
-        // received: 'RECEIVED',
-      }
-    })
-  })
-  test(('run screen.debug()'), () => {
-    render(<MessageContainer store={store} messages = {store.getState().messages}/>)
-    screen.debug();
-  })
-})
+// describe('MessageContainer tests', () => {
+//   beforeAll(() => {
+//     store.dispatch({
+//       type: 'UPDATE_MESSAGES',
+//       payload: {
+//         id: '67',
+//         targetUsername: 'blabby',
+//         senderUsername: 'coraline',
+//         language: 'french',
+//         message: 'I don\'t speak french',
+//         // received: 'RECEIVED',
+//       }
+//     })
+//   })
+//   test(('run screen.debug()'), () => {
+//     render(<MessageContainer store={store} messages = {store.getState().messages}/>)
+//     screen.debug();
+//   })
+// })
